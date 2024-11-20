@@ -51,12 +51,12 @@ public:
     }
     void Prepend(const T &item) override
     {
-        this->data->Resize(this->data->GetSize() + 1);
-        for (int i = this->data->GetSize() - 1; i > 1; i--)
+        this->data->Resize((this->data)->GetSize() + 1);
+        for (int i = (this->data)->GetSize() - 1; i > 0; i--)
         {
-            this->data->Set(this->data->Get(i - 1), i);
-            this->data->Set(0, item);
+            (this->data)->Set((this->data)->Get(i - 1), i);
         }
+        (this->data)->Set(item, 0);
     }
     
     T& operator[](int index) override

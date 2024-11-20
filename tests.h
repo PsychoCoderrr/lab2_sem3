@@ -104,4 +104,6 @@ void TestArraySequence()
     assert(test.GetFirst() == 0);
     assert(test[0] == 0);
     assert(test[5] == 5);
+    test[5] = 80;
+    assert(test[5] == 80);
 }
