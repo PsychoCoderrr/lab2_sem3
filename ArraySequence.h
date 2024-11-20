@@ -61,6 +61,6 @@ public:
     
     T& operator[](int index) override
     {
-        return (this->data)[index];
+        return (*(this->data))[index];
     }
 };
