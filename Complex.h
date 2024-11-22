@@ -25,12 +25,12 @@ class complex
         Im = itemForCopy.Im;
     }
 
-    double GetRe()
+    const double GetRe() const
     {
         return Re;
     }
 
-    double GetIm()
+    const double GetIm() const
     {
         return Im;
     }

@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Complex.h"
-#include "DynamicArray.h"
 #include "Person.h"
 #include "assert.h"
 #include "ArraySequence.h"
@@ -51,43 +50,6 @@ void TestComplexDiv()
     complex test3 = test1 / test2;
     assert(test3.GetRe() == 1);
     assert(test3.GetIm() == 0);
-}
-
-void TestDynamicArrayConstructors()
-{
-    int a[] = {1, 2, 3, 4, 5, 6};
-
-    DynamicArray<int> test1(6);
-    assert(test1.GetSize() == 6);
-
-    DynamicArray<int> test2(a, 6);
-    assert(test2.GetSize() == 6);
-    for (int i = 0; i < test2.GetSize(); i++)
-    {
-        assert(test2.Get(i) == a[i]);
-    }
-
-    DynamicArray<int> test3(test2);
-    assert(test3.GetSize() == test2.GetSize());
-    for (int i = 0; i < test3.GetSize(); i++)
-    {
-        assert(test2.Get(i) == test3.Get(i));
-    }
-}
-
-void TestDynamicArraySet()
-{
-    int a[] = {1, 2, 3, 4, 5, 6, 7, 8};
-    DynamicArray<int> test(a, 8);
-    assert(test.GetSize() == 8);
-    for (int i = 0; i < test.GetSize(); i++)
-    {
-        assert(test.Get(i) == a[i]);
-    }
-    test.Set(9, 3);
-    assert(test.Get(3) == 9);
-    test[3] = 10;
-    assert(test[3] == 10);
 }
 
 void TestArraySequence()

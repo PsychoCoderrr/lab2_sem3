@@ -1,5 +1,6 @@
 #pragma once
 #include "ArraySequence.h"
+#include "Sequence.h"
 #include <iterator>
 #include <type_traits>
 #include <cstddef>
@@ -8,7 +9,7 @@ template<typename T, bool is_const>
 class ArraySequenceIterator
 {
 private:
-    typedef std::conditional_t<is_const, const ArraySequence<T>, ArraySequence<T>> *elem_ptr_t;
+    using elem_ptr_t = std::conditional_t<is_const, const T, T>*;
     
     elem_ptr_t elem_;
     

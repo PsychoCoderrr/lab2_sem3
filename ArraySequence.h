@@ -1,6 +1,10 @@
 #pragma once
 #include "Sequence.h"
-template <typename T> class ArraySequence : public Sequence<T>
+
+template <typename T, bool is_const>
+class ArraySequenceIterator;
+
+template <std::default_initializable T> class ArraySequence : public Sequence<T>
 {
   private:
     T *elements = nullptr;
@@ -26,6 +30,15 @@ template <typename T> class ArraySequence : public Sequence<T>
     }
 
   public:
+    
+    using value_type = T;
+    using reference = T&;
+    using const_reference = const T&;
+    using iterator = ArraySequenceIterator<T, false>;
+    using const_iterator = ArraySequenceIterator<T, true>;
+    using difference_type = ptrdiff_t;
+    using size_type = size_t;
+    
     ArraySequence() : size(0), capacity(0), elements(nullptr)
     {
     }
@@ -57,25 +70,31 @@ template <typename T> class ArraySequence : public Sequence<T>
         }
     }
 
-    ArraySequence(const DynamicArray<T> &dynamicArray) : DynamicArray<T>(dynamicArray.elements, dynamicArray.size)
-    {
-    }
-
     ~ArraySequence()
     {
         delete[] elements;
     }
-    T GetFirst() const override
+    
+    iterator begin() noexcept
+    {
+        return iterator(elements);
+    }
+    iterator end() noexcept
+    {
+        return iterator(elements + size);
+    }
+    
+    value_type GetFirst() const override
     {
         return elements[0];
     }
     
-    T GetLast() const override
+    value_type GetLast() const override
     {
         return elements[size - 1];
     }
     
-    T Get(int index) const override
+    value_type Get(int index) const override
     {
         if (index < 0 || index > size)
         {
@@ -89,7 +108,7 @@ template <typename T> class ArraySequence : public Sequence<T>
         return size;
     }
 
-    void Set(const T &value, int index)
+    void Set(const_reference value, int index)
     {
         if (index < 0 || index > size)
         {
@@ -116,13 +135,13 @@ template <typename T> class ArraySequence : public Sequence<T>
         size = newSize;
     }
     
-    void Append(const T& item) override
+    void Append(const_reference item) override
     {
         this->Resize(this->GetLength() + 1);
         elements[this->GetLength() - 1] = item;
     }
     
-    void Prepend(const T& item) override
+    void Prepend(const_reference item) override
     {
         this->Resize(this->GetLength() + 1);
         for (int i = this->GetLength(); i > 0; i--)
@@ -132,7 +151,7 @@ template <typename T> class ArraySequence : public Sequence<T>
         elements[0] = item;
     }
     
-    T &operator[](int index) override
+    reference operator[](int index) override
     {
         if (size <= index)
         {
@@ -141,7 +160,7 @@ template <typename T> class ArraySequence : public Sequence<T>
         return elements[index];
     }
     
-    const T &operator[](int index) const
+    const_reference operator[](int index) const
     {
         if (size <= index)
         {
@@ -150,7 +169,7 @@ template <typename T> class ArraySequence : public Sequence<T>
         return elements[index];
     }
 
-    bool operator==(const DynamicArray<T> &array)
+    bool operator==(const ArraySequence<T>& array)
     {
         if (array.size != size)
         {
