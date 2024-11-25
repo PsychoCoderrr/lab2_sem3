@@ -7,7 +7,7 @@
 #include "DefaultComporator.h"
 #include "QuickSort.h"
 #include "HeapSort.h"
-
+#include "Book.h"
 int main()
 {
     ArraySequence<int> seq;
@@ -17,8 +17,8 @@ int main()
     seq.Append(23);
 
     std::cout << "Before sorting:\n";
-    for (auto it = seq.begin(); it != seq.end(); ++it) {
-        std::cout << *it << "\n";
+    for (auto it:seq) {
+        std::cout << it << "\n";
     }
     
     HeapSort<int, ArraySequenceIterator<int, false>> HeapSorter;
@@ -28,5 +28,6 @@ int main()
     for (auto it = seq.begin(); it != seq.end(); ++it) {
         std::cout << *it << "\n";
     }
+    
     return 0;
 }
