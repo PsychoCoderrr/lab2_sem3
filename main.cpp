@@ -5,28 +5,28 @@
 #include "HeadSorter.h"
 #include "BubbleSort.h"
 #include "DefaultComporator.h"
+#include "QuickSort.h"
+#include "HeapSort.h"
 
 int main()
 {
     ArraySequence<int> seq;
-    seq.Append(1);
-    seq.Append(8);
-    seq.Append(5);
+    seq.Append(10);
+    seq.Append(25);
     seq.Append(3);
+    seq.Append(23);
 
     std::cout << "Before sorting:\n";
     for (auto it = seq.begin(); it != seq.end(); ++it) {
         std::cout << *it << "\n";
     }
     
-    BubbleSort<int, ArraySequenceIterator<int, false>> BubbleSorter;
-    BubbleSorter.sort(seq.begin(), seq.end(), DefaultComparator);
+    HeapSort<int, ArraySequenceIterator<int, false>> HeapSorter;
+    HeapSorter.sort(seq.begin(), seq.end(), DefaultComparator);
     std::cout << std::endl;
     std::cout << "After sorting:\n";
     for (auto it = seq.begin(); it != seq.end(); ++it) {
         std::cout << *it << "\n";
     }
-    complex test = complex(3, 4);
-    complex test2 = complex(5, 0);
     return 0;
 }
