@@ -147,10 +147,3 @@ public:
     
     
 };
-
-//template<bool other_const, typename T>
-//ArraySequenceIterator operator + (difference_type n, const ArraySequenceIterator<T, other_const>& o)
-//{
-//    ArraySequenceIterator res(o.elem_ + n);
-//    return res;
-//}

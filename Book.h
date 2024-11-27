@@ -101,4 +101,19 @@ public:
     {
         this->YearPublish = YearPublish;
     }
+//    friend std::ostream &operator<<(std::ostream &out, const BookCard &book)
+//    {
+//        return out << book.ISBN << " " << book.authorSecondName << " " << book.authorFirstName << " " << book.pages <<  " "<< book.YearPublish << std::endl;
+//    }
+    BookCard& operator= (BookCard&& other)
+    {
+        this->ISBN = other.ISBN;
+        this->title = other.title;
+        this->authorSecondName = other.authorSecondName;
+        this->authorFirstName = other.authorFirstName;
+        this->pages = other.pages;
+        this->YearPublish = other.YearPublish;
+        return *this;
+    }
+    
 };
