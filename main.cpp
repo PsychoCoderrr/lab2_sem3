@@ -1,6 +1,6 @@
 #include <iostream>
 #include <time.h>
-
+#include <fstream>
 #include "tests.h"
 #include "ArrayIterator.h"
 #include "ComplexComparator.h"
@@ -14,9 +14,10 @@
 #include "BookCardComporator.h"
 int main()
 {
-    
+    std::string firstname = "/Users/vitalijkoldasev/Desktop/laboratories_3_sem/laboratory2/laboratory2/output.csv";
+    Generator(firstname, 10);
 //    ArraySequence<int> seq;
-//    
+    
 //    int size = 10000000;
 //    int start_sequence = -10000;
 //    int end_sequence = 10000;
@@ -38,7 +39,7 @@ int main()
 //    for (auto it:seq) {
 //        std::cout << it << std::endl;
 //    }
-//    
+    
 //    std::cout << seconds << "\n";
     return 0;
 }

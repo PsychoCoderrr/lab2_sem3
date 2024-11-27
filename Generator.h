@@ -32,32 +32,36 @@ std::string TitleNameList[] = {
 
 void Generator(std::string& name, int count)
 {
-    std::ofstream outFile(name);
+    std::ofstream outFile(name, std::ios::out);
+    if (!outFile) {
+        throw std::ios_base::failure("Failed to open file for writing");
+    }
     
     std::mt19937 generator(static_cast<unsigned int>(std::time(nullptr)));
     
     std::string title, authorSecondName, authorFirstName, ISBN;
     int pages, YearPublish;
     
-    outFile << "ISBN,title,authorSecondName,authorFirstName,pages,YearPublish";
+    outFile << "ISBN,title,authorSecondName,authorFirstName,pages,YearPublish\n";
     
     std::uniform_int_distribution<int> dist1(1000000, 9999999);
     std::uniform_int_distribution<int> dist2(50, 2000);
     std::uniform_int_distribution<int> dist3(1800, 2024);
-    std::uniform_int_distribution<int> distFirstName(0, 20);
-    std::uniform_int_distribution<int> distSecondName(0, 20);
-    std::uniform_int_distribution<int> distTitle(0, 60);
+    std::uniform_int_distribution<int> distFirstName(0, 19);
+    std::uniform_int_distribution<int> distSecondName(0, 19);
+    std::uniform_int_distribution<int> distTitle(0, 59);
     
     for (int i = 0; i < count; i++)
     {
-        ISBN = dist1(generator);
+        ISBN = std::to_string(dist1(generator));
         title = TitleNameList[distTitle(generator)];
         authorFirstName = FirstNameList[distFirstName(generator)];
         authorSecondName = SecondNameList[distSecondName(generator)];
         pages = dist2(generator);
         YearPublish = dist3(generator);
         
-        BookCard(ISBN, title, authorSecondName, authorFirstName, pages, YearPublish);
+        outFile << ISBN << "," << title << "," << authorSecondName << "," << authorFirstName << "," << pages << "," << YearPublish << "\n";
     }
     
+    outFile.close();
 }
