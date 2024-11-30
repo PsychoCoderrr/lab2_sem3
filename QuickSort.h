@@ -1,6 +1,6 @@
 #pragma once
 #include "HeadSorter.h"
-
+//#include "Book.h"
 template<typename T, typename iterator>
 struct QuickSort: public HeadSorter<T, iterator>
 {

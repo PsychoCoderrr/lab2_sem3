@@ -1,21 +1,33 @@
 #include <iostream>
 #include <time.h>
 #include <fstream>
+
 #include "tests.h"
 #include "ArrayIterator.h"
-#include "ComplexComparator.h"
+#include "ArraySequence.h"
+//#include "ComplexComparator.h"
 #include "HeadSorter.h"
-#include "BubbleSort.h"
+//#include "BubbleSort.h"
 #include "DefaultComporator.h"
 #include "QuickSort.h"
-#include "HeapSort.h"
+//#include "HeapSort.h"
 #include "Book.h"
 #include "Generator.h"
 #include "BookCardComporator.h"
 int main()
 {
-    std::string firstname = "/Users/vitalijkoldasev/Desktop/laboratories_3_sem/laboratory2/laboratory2/output.csv";
-    Generator(firstname, 10);
+//    std::string firstname = "/Users/vitalijkoldasev/Desktop/laboratories_3_sem/laboratory2/laboratory2/output.csv";
+//    Generator(firstname, 10);
+    
+    testQuickSortPages(10);
+//    ArraySequence<BookCard> seq;
+//    seq.Append(BookCard("abcd", "ardg", "triih", "shgdf", 67, 996));
+//    seq.Append(BookCard("abcd", "ardg", "triih", "shgdf", 67, 996));
+//    seq.Append(BookCard("abcd", "ardg", "triih", "shgdf", 67, 996));
+//    for (auto it:seq)
+//    {
+//        std::cout << it << std::endl;
+//    }
 //    ArraySequence<int> seq;
     
 //    int size = 10000000;

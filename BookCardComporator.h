@@ -1,52 +1,52 @@
 #pragma once
 #include "Book.h"
 
-bool ComporatorBookPages(BookCard& lhs, BookCard& rhs)
+bool ComporatorBookPages(const BookCard& lhs, const BookCard& rhs)
 {
     return (rhs.GetPages() >= lhs.GetPages());
 }
 
-bool DescComporatorBookPages(BookCard& lhs, BookCard& rhs)
+bool DescComporatorBookPages(const BookCard& lhs, const BookCard& rhs)
 {
     return !(rhs.GetPages() >= lhs.GetPages());
 }
 
-bool ComporatorBookYear(BookCard& lhs, BookCard& rhs)
+bool ComporatorBookYear(const BookCard& lhs, const BookCard& rhs)
 {
     return rhs.GetYearPublish() >= lhs.GetYearPublish();
 }
 
-bool DescComporatorBookYear(BookCard& lhs, BookCard& rhs)
+bool DescComporatorBookYear(const BookCard& lhs, const BookCard& rhs)
 {
     return !(rhs.GetYearPublish() >= lhs.GetYearPublish());
 }
 
-bool ComporatorBookFirstName(BookCard& lhs, BookCard& rhs)
+bool ComporatorBookFirstName(const BookCard& lhs, const BookCard& rhs)
 {
     return rhs.GetAuthorFirstName() >= lhs.GetAuthorFirstName();
 }
 
-bool DescComporatorBookFirstName(BookCard& lhs, BookCard& rhs)
+bool DescComporatorBookFirstName(const BookCard& lhs, const BookCard& rhs)
 {
     return !(rhs.GetAuthorFirstName() >= lhs.GetAuthorFirstName());
 }
 
-bool ComparatorBookTitle(BookCard& lhs, BookCard& rhs)
+bool ComparatorBookTitle(const BookCard& lhs, const BookCard& rhs)
 {
     return rhs.GetTitle() >= lhs.GetTitle();
 }
 
-bool DescComparatorBookTitle(BookCard& lhs, BookCard& rhs)
+bool DescComparatorBookTitle(const BookCard& lhs, const BookCard& rhs)
 {
     return !(rhs.GetTitle() >= lhs.GetTitle());
 }
 
-bool ComporatorBookSecondName(BookCard& lhs, BookCard& rhs)
+bool ComporatorBookSecondName(const BookCard& lhs, const BookCard& rhs)
 {
     return rhs.GetAuthorSecondName() >= lhs.GetAuthorSecondName();
 }
 
-bool DescComporatorBookSecondName(BookCard& lhs, BookCard& rhs)
+bool DescComporatorBookSecondName(const BookCard& lhs, const BookCard& rhs)
 {
     return !(rhs.GetAuthorSecondName() >= lhs.GetAuthorSecondName());
 }

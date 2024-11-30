@@ -4,7 +4,7 @@
 template <typename T, bool is_const>
 class ArraySequenceIterator;
 
-template <std::default_initializable T> class ArraySequence : public Sequence<T>
+template <typename T> class ArraySequence : public Sequence<T>
 {
   private:
     T *elements = nullptr;
@@ -24,7 +24,7 @@ template <std::default_initializable T> class ArraySequence : public Sequence<T>
         {
             newElements[i] = elements[i];
         }
-        delete elements;
+        delete[] elements;
         elements = newElements;
         capacity = newCapacity;
     }
@@ -128,7 +128,7 @@ template <std::default_initializable T> class ArraySequence : public Sequence<T>
             delete[] elements;
             elements = nullptr;
         }
-        if (newSize > capacity)
+        if (newSize >= capacity)
         {
             Reserve(newSize * 2);
         }

@@ -1,7 +1,7 @@
 #pragma once
 #include "Sequence.h"
 #include "ArrayIterator.h"
-
+#include "Book.h"
 template<typename T, typename iterator>
 struct HeadSorter
 {

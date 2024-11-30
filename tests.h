@@ -1,10 +1,17 @@
 #pragma once
 #include <iostream>
+#include <time.h>
+
 #include "Complex.h"
 #include "Person.h"
 #include "assert.h"
 #include "ArraySequence.h"
 #include <compare>
+#include "Generator.h"
+#include "ArrayIterator.h"
+#include "QuickSort.h"
+#include "BookCardComporator.h"
+
 
 void TestComplexSum()
 {
@@ -68,4 +75,25 @@ void TestArraySequence()
     assert(test[5] == 5);
     test[5] = 80;
     assert(test[5] == 80);
+}
+
+
+void testQuickSortPages(int cnt)
+{
+    std::string filename = "/Users/vitalijkoldasev/Desktop/laboratories_3_sem/laboratory2/laboratory2/otput.csv";
+    std::string filename_2 = "/Users/vitalijkoldasev/Desktop/laboratories_3_sem/laboratory2/laboratory2/input.csv";
+
+    Generator(filename, cnt);
+    ArraySequence<BookCard> a;
+    QuickSort<BookCard, ArraySequenceIterator<BookCard, false>> QuickSorter;
+    GettingDataFromFile(filename, a);
+    std::cout << a.GetLength() << std::endl;
+    std::cout<<a[1] << std::endl;
+    clock_t start = clock();
+    QuickSorter.sort(a.begin(), a.end(), ComporatorBookPages);
+    clock_t end = clock();
+    std::cout << a[1] << std::endl;
+    double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+    std::cout << seconds << std::endl;
+    PuttingDataToFile(filename_2, a);
 }

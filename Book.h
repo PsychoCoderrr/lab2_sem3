@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
+#include "Sequence.h"
 
+
+template <typename T>
+class ArraySequence;
 
 class BookCard
 {
@@ -42,32 +46,42 @@ public:
         this->YearPublish = example.YearPublish;
     }
     
-    std::string GetISBN()
+    BookCard(const BookCard& other)
+        : ISBN(other.ISBN),
+          title(other.title),
+          authorSecondName(other.authorSecondName),
+          authorFirstName(other.authorFirstName),
+          pages(other.pages),
+    YearPublish(other.YearPublish){};
+    
+    
+    
+    std::string GetISBN() const
     {
         return this->ISBN;
     }
     
-    std::string GetTitle()
+    std::string GetTitle() const 
     {
         return this->title;
     }
     
-    std::string GetAuthorSecondName()
+    std::string GetAuthorSecondName() const
     {
         return this->authorSecondName;
     }
     
-    std::string GetAuthorFirstName()
+    std::string GetAuthorFirstName() const
     {
         return this->authorFirstName;
     }
     
-    int GetPages()
+    int GetPages() const
     {
         return this->pages;
     }
     
-    int GetYearPublish()
+    int GetYearPublish() const 
     {
         return this->YearPublish;
     }
@@ -101,10 +115,26 @@ public:
     {
         this->YearPublish = YearPublish;
     }
-//    friend std::ostream &operator<<(std::ostream &out, const BookCard &book)
-//    {
-//        return out << book.ISBN << " " << book.authorSecondName << " " << book.authorFirstName << " " << book.pages <<  " "<< book.YearPublish << std::endl;
-//    }
+    friend std::ostream &operator<<(std::ostream &out, const BookCard &book)
+    {
+        return out << book.ISBN << " " << book.title << " "<< book.authorSecondName << " " << book.authorFirstName << " " << book.pages <<  " "<< book.YearPublish << std::endl;
+    }
+    
+    friend std::istream &operator>>(std::istream &in, BookCard &book)
+    {
+        std::cout << "Enter first name: ";
+        in >> book.ISBN;
+        std::cout << "Enter middle name: ";
+        in >> book.title;
+        std::cout << "Enter last name: ";
+        in >> book.authorSecondName;
+        std::cout << "Enter id: ";
+        in >> book.authorFirstName;
+        in >> book.pages;
+        in >> book.YearPublish;
+        return in;
+    }
+    
     BookCard& operator= (BookCard&& other)
     {
         this->ISBN = other.ISBN;
@@ -116,4 +146,31 @@ public:
         return *this;
     }
     
+    BookCard& operator=(const BookCard& other)
+    {
+        if (this != &other) { // Проверка на самоприсваивание
+            this->ISBN = other.ISBN;
+            this->title = other.title;
+            this->authorSecondName = other.authorSecondName;
+            this->authorFirstName = other.authorFirstName;
+            this->pages = other.pages;
+            this->YearPublish = other.YearPublish;
+        }
+        return *this;
+    }
+    
+    //~BookCard() = default;
+    
+    ~BookCard()
+    {
+        // Очистка ресурсов (если будет добавлена динамическая память в будущем)
+        ISBN.clear();
+        title.clear();
+        authorSecondName.clear();
+        authorFirstName.clear();
+        pages = 0;
+        YearPublish = 0;
+    }
+    friend void GettingDataFromFile(std::string& name, ArraySequence<BookCard>& book);
+    friend void PuttingDataToFile(std::string& name, ArraySequence<BookCard>& book);
 };
